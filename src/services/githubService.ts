@@ -7,22 +7,14 @@ if (!GITHUB_API_TOKEN) {
 }
 
 export const fetchCandidates = async (query: string) => {
-  console.log('Making API request to GitHub with query:', query);
-  try {
-    const response = await fetch(`${GITHUB_API_URL}/search/users?q=${query}`, {
-      headers: {
-        Authorization: `token ${GITHUB_API_TOKEN}`,
-      },
-    });
-    if (!response.ok) {
-      console.error('Failed to fetch candidates:', response.statusText);
-      throw new Error(`Failed to fetch candidates: ${response.statusText}`);
-    }
-    const data = await response.json();
-    console.log('API response data:', data);
-    return data.items;
-  } catch (error) {
-    console.error('Error during fetchCandidates:', error);
-    throw error;
+  const response = await fetch(`${GITHUB_API_URL}/search/users?q=${query}`, {
+    headers: {
+      Authorization: `token ${GITHUB_API_TOKEN}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch candidates');
   }
+  const data = await response.json();
+  return data.items;
 };
