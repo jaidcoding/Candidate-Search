@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CandidateCard from '../components/CandidateCard';
 import { searchGithub } from '../api/API'; 
-
-interface Candidate {
-    login: string;
-    avatar_url: string;
-    name: string;
-    location: string;
-    email: string;
-    html_url: string;
-    company: string;
-}
+import { Candidate } from '../interfaces/Candidate.interface';
 
 const CandidateSearch: React.FC = () => {
     const [candidates, setCandidates] = useState<Candidate[]>([]);

@@ -8,10 +8,10 @@ const Nav = () => {
           <Link to="/" className="nav-link">Home</Link> {/* Link to the Home page */}
         </li>
         <li className="nav-item">
-          <Link to="/candidates" className="nav-link">Candidate Search</Link> {/* Link to Candidate Search */}
+          <Link to="/candidate-search" className="nav-link">Candidate Search</Link> {/* Link to Candidate Search */}
         </li>
         <li className="nav-item">
-          <Link to="/saved" className="nav-link">Saved Candidates</Link> {/* Link to Saved Candidates */}
+          <Link to="/saved-candidates" className="nav-link">Saved Candidates</Link> {/* Link to Saved Candidates */}
         </li>
       </ul>
     </nav>

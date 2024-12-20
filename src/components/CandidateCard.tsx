@@ -1,14 +1,5 @@
 import { FunctionComponent } from 'react';
-
-interface Candidate {
-  login: string;
-  avatar_url: string;
-  name?: string; 
-  location?: string; 
-  email?: string; 
-  html_url: string;
-  company?: string; 
-}
+import { Candidate } from '../interfaces/Candidate.interface';
 
 interface CandidateCardProps {
   candidate: Candidate;
