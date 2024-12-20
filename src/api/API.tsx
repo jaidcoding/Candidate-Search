@@ -56,6 +56,7 @@ const searchGithub = async (): Promise<Candidate[]> => {
     // Fetch additional details for each user
     const detailedCandidates = await Promise.all(data.map(async (user) => {
       const userDetails: GithubUser = await fetchGithub(`https://api.github.com/users/${user.login}`);
+      console.log(userDetails); // Log userDetails to check properties
       return {
         login: userDetails.login,
         avatar_url: userDetails.avatar_url,
@@ -83,6 +84,7 @@ const searchGithub = async (): Promise<Candidate[]> => {
 const searchGithubUser = async (username: string): Promise<Candidate | null> => {
   try {
     const data: GithubUser = await fetchGithub(`https://api.github.com/users/${username}`);
+    console.log(data); // Log data to check properties
     return {
       login: data.login,
       avatar_url: data.avatar_url,

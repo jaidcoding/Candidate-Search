@@ -17,10 +17,10 @@ const CandidateCard: FunctionComponent<CandidateCardProps> = ({ candidate, onSav
         className="candidate-avatar" 
       />
       <div className="candidate-card-content">
-        <h2>{candidate.name || candidate.login}</h2>
-        <p><strong>Location:</strong> {candidate.location || 'N/A'}</p>
-        <p><strong>Email:</strong> {candidate.email || 'N/A'}</p>
-        <p><strong>Company:</strong> {candidate.company || 'N/A'}</p>
+        <h2>{candidate.name || candidate.login}</h2> {/* Use login as fallback */}
+        <p><strong>Location:</strong> {candidate.location}</p>
+        <p><strong>Email:</strong> {candidate.email}</p>
+        <p><strong>Company:</strong> {candidate.company}</p>
         <a href={candidate.html_url} target="_blank" rel="noopener noreferrer">View Profile</a>
         <div className="button-group">
           <button className="button save-button" onClick={onSave}>Save Candidate</button>
