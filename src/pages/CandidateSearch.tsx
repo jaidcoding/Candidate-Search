@@ -14,8 +14,8 @@ const CandidateSearch: React.FC = () => {
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
-                const data: Candidate[] = await searchGithub();
-                console.log(data); // Log data to check its structure
+                const data = await searchGithub();
+                console.log('Fetched candidates:', data); // Log data to check its structure
                 setCandidates(data);
             } catch (error) {
                 console.error("Error fetching candidates:", error);
@@ -40,6 +40,7 @@ const CandidateSearch: React.FC = () => {
     };
 
     const currentCandidate = candidates[currentIndex];
+    console.log('Current candidate:', currentCandidate); // Log current candidate to check its properties
 
     return (
         <div>

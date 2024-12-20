@@ -8,6 +8,7 @@ interface CandidateCardProps {
 }
 
 const CandidateCard: FunctionComponent<CandidateCardProps> = ({ candidate, onSave, onNext }) => {
+  console.log(candidate); // Log candidate to check its properties
   return (
     <div className="candidate-card">
       <img 
