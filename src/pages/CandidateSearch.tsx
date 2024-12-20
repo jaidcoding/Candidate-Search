@@ -56,7 +56,6 @@ const CandidateSearch: React.FC = () => {
             {candidates.length === 0 ? (
                 <p>Loading candidates...</p>
             ) : currentCandidate ? (
-                // <>hello</>
                 <CandidateCard
                     candidate={currentCandidate}
                     onSave={saveCandidate}
@@ -65,18 +64,6 @@ const CandidateSearch: React.FC = () => {
             ) : (
                 <p>No more candidates available.</p>
             )}
-            <button 
-                onClick={saveCandidate} 
-                disabled={currentIndex >= candidates.length} 
-            >
-                Save Candidate
-            </button>
-            <button 
-                onClick={nextCandidate} 
-                disabled={currentIndex >= candidates.length - 1} 
-            >
-                Next Candidate
-            </button>
         </div>
     );
 };

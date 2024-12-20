@@ -84,6 +84,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center content vertically */
   margin-top: 2em;
 }
 
@@ -129,4 +130,96 @@ tbody tr:nth-child(odd) {
 .table {
   width: 80vw;
   table-layout: fixed;
+}
+
+.candidate-card {
+  background-color: #202020;
+  border-radius: 8px;
+  padding: 0; /* Remove padding to make the image fill the top */
+  margin: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #ffffff;
+  max-width: 300px; /* Adjust the width to make the card smaller */
+  overflow: hidden; /* Ensure content doesn't overflow the card */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+
+.candidate-avatar {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 0; /* Remove bottom margin to reduce space */
+}
+
+.candidate-card-content {
+  padding: 10px 20px; /* Adjust padding to reduce space above the username */
+}
+
+.candidate-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.candidate-card p {
+  margin: 0.5em 0;
+}
+
+.candidate-card a {
+  display: inline-block;
+  margin-top: 1em;
+  color: #646cff;
+  text-decoration: none;
+}
+
+.candidate-card a:hover {
+  color: #535bf2;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Adjust spacing between buttons */
+  margin-top: 1.5em;
+}
+
+.button-group .button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  flex: 1; /* Make buttons take equal space */
+  margin: 0 0.5em; /* Add margin between buttons */
+}
+
+.button-group .button:hover {
+  border-color: #646cff;
+}
+
+.button-group .button:focus,
+.button-group .button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.button-group .save-button {
+  background-color: #28a745; /* Green background */
+  color: #fff;
+}
+
+.button-group .save-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.button-group .next-button {
+  background-color: #dc3545; /* Red background */
+  color: #fff;
+}
+
+.button-group .next-button:hover {
+  background-color: #c82333; /* Darker red on hover */
 }
