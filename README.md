@@ -57,3 +57,7 @@ Missing profile fields are rendered as a fallback rather than blank, exhausted A
 ## Stack
 
 React · TypeScript · Vite · GitHub REST API
+
+## License
+
+MIT — see [LICENSE](LICENSE).
