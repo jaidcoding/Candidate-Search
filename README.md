@@ -1,200 +1,59 @@
-# Candidate Search Application
+# Candidate Search
 
-This application allows users to search for GitHub users and save potential candidates for future reference. It uses the GitHub API to fetch user details.
+A hiring tool that pulls candidates from the GitHub API, lets you accept or reject each one, and keeps a shortlist you can come back to.
 
-## Table of Contents
+![React](https://img.shields.io/badge/React-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6)
+![Vite](https://img.shields.io/badge/Vite-646CFF)
 
-- [Environment Variables](#environment-variables)
-- [Interfaces](#interfaces)
-- [Functions](#functions)
-- [Components](#components)
-- [Pages](#pages)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Error Handling](#error-handling)
+**Live:** https://jaidcoding.github.io/Candidate-Search/
 
-## Environment Variables
+## How it works
 
-Make sure to set the following environment variable in your project:
-
-- `VITE_GITHUB_TOKEN`: Your GitHub personal access token.
-
-## Interfaces
-
-### `GithubUser`
-
-Represents a GitHub user.
-
-```typescript
-interface GithubUser {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-  name?: string;
-  location?: string;
-  email?: string;
-  company?: string;
-}
-```
-
-### `Candidate`
-
-Represents a candidate with additional details.
-
-```typescript
-interface Candidate {
-  login: string;
-  avatar_url: string;
-  name: string;
-  location: string;
-  email: string;
-  html_url: string;
-  company: string;
-}
-```
-
-## Functions
-
-### `fetchGithub`
-
-Fetches data from the GitHub API.
-
-```typescript
-const fetchGithub = async (url: string) => {
-  // ...existing code...
-};
-```
-
-### `searchGithub`
-
-Fetches a list of GitHub users and their details.
-
-```typescript
-const searchGithub = async (): Promise<Candidate[]> => {
-  // ...existing code...
-};
-```
-
-### `searchGithubUser`
-
-Fetches details of a specific GitHub user by username.
-
-```typescript
-const searchGithubUser = async (username: string): Promise<Candidate | null> => {
-  // ...existing code...
-};
-```
-
-## Components
-
-### `CandidateCard`
-
-Displays candidate details and provides options to save or view the next candidate.
-
-```typescript
-const CandidateCard: FunctionComponent<CandidateCardProps> = ({ candidate, onSave, onNext }) => {
-  // ...existing code...
-};
-```
-
-### `Nav`
-
-Navigation component for the application.
-
-```typescript
-const Nav = () => {
-  // ...existing code...
-};
-```
+Candidates are fetched one at a time from the GitHub users API. You accept — which saves them to the shortlist — or skip, which moves straight to the next. The shortlist persists in local storage, so it survives a refresh.
 
 ## Pages
 
-### `Home`
-
-Home page of the application.
-
-```typescript
-const Home = () => {
-  // ...existing code...
-};
-```
-
-### `CandidateSearch`
-
-Page to search for candidates.
-
-```typescript
-const CandidateSearch: React.FC = () => {
-  // ...existing code...
-};
-```
-
-### `SavedCandidates`
-
-Page to view saved candidates.
-
-```typescript
-const SavedCandidates: React.FC = () => {
-  // ...existing code...
-};
-```
+| Page | Purpose |
+| --- | --- |
+| Candidate Search | One candidate at a time with accept and reject actions |
+| Saved Candidates | The shortlist, in a sortable table, with the option to remove |
 
 ## Setup
 
-1. Clone the repository.
-2. Install dependencies using `npm install`.
-3. Create a `.env` file in the root directory and add your GitHub token:
-   ```
-   VITE_GITHUB_TOKEN=your_github_token
-   ```
-4. Start the development server using `npm run dev`.
+The GitHub API rate-limits unauthenticated requests hard, so a personal access token is required.
 
-## Usage
+1. Create a token at **GitHub → Settings → Developer settings → Personal access tokens**. No scopes are needed for public user data.
+2. Add it to `.env` in the project root:
 
-### Fetching a List of Candidates
-
-```typescript
-import { searchGithub } from './src/api/API';
-
-const fetchCandidates = async () => {
-  const candidates = await searchGithub();
-  console.log(candidates);
-};
-
-fetchCandidates();
+```
+VITE_GITHUB_TOKEN=your_token_here
 ```
 
-### Fetching a Specific User
+`.env` is gitignored — never commit the token.
 
-```typescript
-import { searchGithubUser } from './src/api/API';
-
-const fetchUser = async (username: string) => {
-  const user = await searchGithubUser(username);
-  console.log(user);
-};
-
-fetchUser('octocat');
+```bash
+npm install
+npm run dev
 ```
 
-## Error Handling
+Then open http://localhost:5173.
 
-The functions handle errors such as network issues and API rate limits. Ensure to check the console for error messages.
+## Structure
 
-```typescript
-try {
-  const candidates = await searchGithub();
-  // ...use candidates...
-} catch (error) {
-  console.error('Error:', error);
-}
+```
+src/
+  api/API.ts                    GitHub API calls
+  components/CandidateCard.tsx  single candidate view
+  components/CandidateSearch.tsx search flow
+  interfaces/                   Candidate type definitions
+  pages/                        SavedCandidates and search pages
 ```
 
-```typescript
-try {
-  const user = await searchGithubUser('octocat');
-  // ...use user...
-} catch (error) {
-  console.error('Error:', error);
-}
-```
+## Error handling
+
+Missing profile fields are rendered as a fallback rather than blank, exhausted API rate limits surface a message instead of failing silently, and an empty shortlist shows an empty state.
+
+## Stack
+
+React · TypeScript · Vite · GitHub REST API
